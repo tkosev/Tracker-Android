@@ -17,10 +17,7 @@ class WelcomeActivity : AppCompatActivity() {
 
 
     private fun loadWelcomeFragment(){
-        Log.e("App:" , "Welcome activity: loadWelcomeFragment()")
-        replaceFragment(R.id.container, WelcomeFragment.newInstance(),"")
+        replaceFragment(R.id.container, WelcomeFragment.newInstance(),WelcomeFragment.TAG)
     }
-
-
-
+    
 }

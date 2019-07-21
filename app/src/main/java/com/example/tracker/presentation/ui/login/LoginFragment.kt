@@ -13,6 +13,7 @@ import com.example.tracker.databinding.ActivityLoginBinding
 import com.example.tracker.presentation.ui.App
 import com.example.tracker.presentation.ui.base.BaseFragment
 import com.example.tracker.presentation.ui.home.HomeActivity
+import com.example.tracker.presentation.ui.register.RegisterFragment
 import com.example.tracker.presentation.ui.welcome.WelcomeFragment
 import javax.inject.Inject
 
@@ -22,6 +23,7 @@ class LoginFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = LoginFragment()
+        var TAG: String = LoginFragment.javaClass.name
     }
 
     @Inject

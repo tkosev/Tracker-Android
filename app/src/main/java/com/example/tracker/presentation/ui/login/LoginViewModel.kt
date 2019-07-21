@@ -9,8 +9,7 @@ import com.example.tracker.domain.entities.LoginEntity
 import com.example.tracker.domain.usecases.LoginUseCase
 import com.example.tracker.presentation.entities.Login
 
-class LoginViewModel(private val loginUseCase: LoginUseCase, private val mapper: Mapper<LoginEntity, Login>) :
-    BaseViewModel() {
+class LoginViewModel(private val loginUseCase: LoginUseCase, private val mapper: Mapper<LoginEntity, Login>) : BaseViewModel() {
 
     /** User Email*/
     var emailAddress = MutableLiveData<String>()
@@ -24,16 +23,22 @@ class LoginViewModel(private val loginUseCase: LoginUseCase, private val mapper:
     /** User Password*/
     var errorMessage = MutableLiveData<String>()
 
+    /** Success user login indicator*/
     val loginSuccessLiveData: MutableLiveData<Boolean> = MutableLiveData()
 
-    //var viewState: MutableLiveData<PopularMoviesViewState> = MutableLiveData()
+    init {
+        emailAddress.value = ""
+        password.value = ""
+    }
 
     /** Method called when user clicks on login button */
     fun onLoginButtonClick(view: View) {
         addDisposable(
             loginUseCase.login(emailAddress.value!!, password.value!!)
                 .subscribe({ success ->
-                    loginSuccessLiveData.value = true
+                    isError.value = false
+                    loginSuccessLiveData.value = success
+
                 }, { error ->
                     Log.e("Login", "onError: " + error.localizedMessage)
                     isError.value = true

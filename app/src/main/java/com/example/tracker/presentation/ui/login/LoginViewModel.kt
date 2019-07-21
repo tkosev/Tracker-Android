@@ -1,21 +1,28 @@
 package com.example.tracker.presentation.ui.login
+
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.example.tracker.base.BaseViewModel
-import com.example.tracker.common.SingleLiveEvent
 import com.example.tracker.domain.Mapper
 import com.example.tracker.domain.entities.LoginEntity
 import com.example.tracker.domain.usecases.LoginUseCase
 import com.example.tracker.presentation.entities.Login
 
-class LoginViewModel(private val loginUseCase: LoginUseCase, private val mapper: Mapper<LoginEntity, Login>) : BaseViewModel() {
+class LoginViewModel(private val loginUseCase: LoginUseCase, private val mapper: Mapper<LoginEntity, Login>) :
+    BaseViewModel() {
 
     /** User Email*/
     var emailAddress = MutableLiveData<String>()
 
     /** User Password*/
     var password = MutableLiveData<String>()
+
+    /** User Password*/
+    var isError = MutableLiveData<Boolean>()
+
+    /** User Password*/
+    var errorMessage = MutableLiveData<String>()
 
     val loginSuccessLiveData: MutableLiveData<Boolean> = MutableLiveData()
 
@@ -27,12 +34,10 @@ class LoginViewModel(private val loginUseCase: LoginUseCase, private val mapper:
             loginUseCase.login(emailAddress.value!!, password.value!!)
                 .subscribe({ success ->
                     loginSuccessLiveData.value = true
-                },{ error ->
+                }, { error ->
                     Log.e("Login", "onError: " + error.localizedMessage)
-
-                    when(error.localizedMessage){
-
-                    }
+                    isError.value = true
+                    errorMessage.value = error.localizedMessage
                 }, {
                     Log.e("Login", "onComplete")
                 })

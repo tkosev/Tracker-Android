@@ -2,17 +2,27 @@ package com.example.tracker.presentation.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.tracker.databinding.ActivityLoginBinding
 import com.example.tracker.presentation.ui.App
+import com.example.tracker.presentation.ui.base.BaseFragment
 import com.example.tracker.presentation.ui.home.HomeActivity
+import com.example.tracker.presentation.ui.welcome.WelcomeFragment
 import javax.inject.Inject
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginFragment : BaseFragment() {
+
+
+    companion object {
+        fun newInstance() = LoginFragment()
+    }
 
     @Inject
     lateinit var factory: LoginVMFactory
@@ -24,25 +34,25 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, com.example.tracker.R.layout.activity_login)
-
-        (application as App).createLoginComponent().inject(this)
+        (activity?.application as App).createLoginComponent().inject(this)
 
         initViewModel()
 
-        initDataBinding()
-
         observeViewModelState()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        this.binding = DataBindingUtil.inflate(inflater, com.example.tracker.R.layout.activity_login,container,false)
+        this.binding?.lifecycleOwner = this
+        this.binding?.loginViewModel = viewModel
+        return binding?.root
     }
 
     private fun initViewModel() {
         this.viewModel = ViewModelProviders.of(this, factory).get(LoginViewModel::class.java)
     }
 
-    private fun initDataBinding(){
-        this.binding?.lifecycleOwner = this
-        this.binding?.loginViewModel = viewModel
-    }
 
     private fun observeViewModelState(){
         this.viewModel.loginSuccessLiveData.observe(this, Observer {
@@ -50,6 +60,8 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    private fun handleLoginSuccess() = this.startActivity(Intent(this, HomeActivity::class.java))
+    private fun handleLoginSuccess() {
+        this.startActivity(Intent(activity, HomeActivity::class.java))
+    }
 
 }

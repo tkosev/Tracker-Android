@@ -4,6 +4,8 @@ import com.example.tracker.injection.data.DataModule
 import com.example.tracker.injection.login.LoginModule
 import com.example.tracker.injection.login.LoginSubComponent
 import com.example.tracker.injection.network.NetworkModule
+import com.example.tracker.injection.welcome.WelcomeModule
+import com.example.tracker.injection.welcome.WelcomeSubComponent
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
@@ -28,6 +30,7 @@ const val SCHEDULER_IO = "io"
 
 interface MainComponent {
     fun plus(loginModule: LoginModule): LoginSubComponent
+    fun plus(loginModule: WelcomeModule): WelcomeSubComponent
 
 
 }

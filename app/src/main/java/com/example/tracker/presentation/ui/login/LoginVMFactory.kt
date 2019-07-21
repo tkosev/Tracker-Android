@@ -8,10 +8,10 @@ import com.example.tracker.domain.usecases.LoginUseCase
 import com.example.tracker.presentation.entities.Login
 
 
-class LoginVMFactory(private val useCase: LoginUseCase,  private val mapper: Mapper<LoginEntity, Login>) : ViewModelProvider.Factory {
+class LoginVMFactory(private val useCase: LoginUseCase) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return LoginViewModel(useCase, mapper) as T
+        return LoginViewModel(useCase) as T
     }
 
 }

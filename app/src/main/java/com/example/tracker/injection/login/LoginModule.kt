@@ -12,8 +12,6 @@ import dagger.Provides
 @Module
 class LoginModule {
 
-
-
     @LoginScope
     @Provides
     fun provideLoginUseCase(authenticationRepository: FireBaseAuthRepo): LoginUseCase {
@@ -21,10 +19,7 @@ class LoginModule {
     }
     @LoginScope
     @Provides
-    fun provideLoginVMFactory(useCase: LoginUseCase, mapper: LoginEntityMapper)
-            : LoginVMFactory {
-        return LoginVMFactory(useCase, mapper)
+    fun provideLoginVMFactory(useCase: LoginUseCase) : LoginVMFactory {
+        return LoginVMFactory(useCase)
     }
-
-
 }

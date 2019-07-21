@@ -10,3 +10,14 @@ fun AppCompatActivity.replaceFragment(@IdRes where: Int, fragment: Fragment, tag
             .commit()
 
 }
+
+
+fun AppCompatActivity.addFragmentToBackStack(@IdRes where: Int, fragment: Fragment, tag: String) {
+    supportFragmentManager.beginTransaction()
+        .replace(where, fragment, tag)
+        .addToBackStack(null)
+        .commit()
+
+}
+
+

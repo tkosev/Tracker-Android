@@ -19,5 +19,5 @@ class WelcomeActivity : AppCompatActivity() {
     private fun loadWelcomeFragment(){
         replaceFragment(R.id.container, WelcomeFragment.newInstance(),WelcomeFragment.TAG)
     }
-    
+
 }

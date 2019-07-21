@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Tracker</string>
+    <string name="post_error">dada</string>
+    <string name="welcome_screen_title">Hope on the Hype Train!</string>
+    <string name="welcome_screen_login_now_button_text">Login now</string>
+    <string name="welcome_screen_facebook_button_text">Continue with Facebook</string>
+    <string name="welcome_screen_sign_up_with_email">Signup with Email</string>
+
+
+    <string name="login_screen_title">Welcome Back</string>
+    <string name="login_facebook_btn_text">Login with Facebook</string>
+    <string name="login_or_txt">Or</string>
+    <string name="login_email_hint">Email Address</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_login_btn_text">Login</string>
+    <string name="login_forgot_password_text">Forgotten your password?</string>
+    <string name="login_register_now_text">Havent registered yet? Join now</string>
+    <string name="login_error_email_invalid">There is no user record corresponding to this identifier. The user may have
+        been deleted.
+    </string>
+    <string name="login_error_password_invalid">The password is invalid or the user does not have a password.</string>
+
+</resources>

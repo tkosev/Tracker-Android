@@ -22,11 +22,6 @@ class LoginViewModel(private val loginUseCase: LoginUseCase) : BaseViewModel() {
     /** Success user login indicator*/
     val loginSuccessLiveData: MutableLiveData<Boolean> = MutableLiveData()
 
-    init {
-       // emailAddress.value = ""
-       // password.value = ""
-    }
-
     /** Method called when user clicks on login button */
     fun onLoginButtonClick(view: View) {
         addDisposable(

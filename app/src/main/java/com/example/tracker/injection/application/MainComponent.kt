@@ -4,6 +4,8 @@ import com.example.tracker.injection.data.DataModule
 import com.example.tracker.injection.login.LoginModule
 import com.example.tracker.injection.login.LoginSubComponent
 import com.example.tracker.injection.network.NetworkModule
+import com.example.tracker.injection.register.RegisterModule
+import com.example.tracker.injection.register.RegisterSubComponent
 import com.example.tracker.injection.welcome.WelcomeModule
 import com.example.tracker.injection.welcome.WelcomeSubComponent
 import dagger.Component
@@ -24,13 +26,11 @@ const val SCHEDULER_IO = "io"
     ,(MovieListFragmentModule::class)
 ,(ViewModelModule::class::class)
 */
-
 ])
 
 
 interface MainComponent {
     fun plus(loginModule: LoginModule): LoginSubComponent
-    fun plus(loginModule: WelcomeModule): WelcomeSubComponent
-
-
+    fun plus(welcome: WelcomeModule): WelcomeSubComponent
+    fun plus(register: RegisterModule): RegisterSubComponent
 }

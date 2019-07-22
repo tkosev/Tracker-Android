@@ -5,8 +5,7 @@ import androidx.databinding.BaseObservable
 
 data class LoginViewState(
     var isLoginSuccess :Boolean,
-    var errorMessage : String
-) : BaseObservable() {
+    var errorMessage : String) : BaseObservable() {
 
 
 }

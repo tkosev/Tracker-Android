@@ -43,8 +43,7 @@ class LoginFragment : BaseFragment() {
         observeViewModelState()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.binding = DataBindingUtil.inflate(inflater, com.example.tracker.R.layout.activity_login,container,false)
         this.binding?.lifecycleOwner = this
         this.binding?.loginViewModel = viewModel

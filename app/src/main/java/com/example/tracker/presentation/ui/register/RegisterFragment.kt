@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.tracker.R
+import com.example.tracker.presentation.ui.App
+import com.example.tracker.presentation.ui.login.LoginViewModel
+import javax.inject.Inject
 
 class RegisterFragment : Fragment() {
 
@@ -17,6 +20,19 @@ class RegisterFragment : Fragment() {
 
     private lateinit var viewModel: RegisterViewModel
 
+    @Inject
+    lateinit var factory : RegisterVMFactory
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity?.application as App).createRegisterComponent().inject(this)
+        initViewModel()
+    }
+
+    private fun initViewModel() {
+        this.viewModel = ViewModelProviders.of(this, factory).get(RegisterViewModel::class.java)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,10 +40,6 @@ class RegisterFragment : Fragment() {
         return inflater.inflate(R.layout.register_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(RegisterViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+
 
 }

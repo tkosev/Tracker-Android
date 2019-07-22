@@ -19,7 +19,7 @@ class LoginModule {
     }
     @LoginScope
     @Provides
-    fun provideLoginVMFactory(useCase: LoginUseCase) : LoginVMFactory {
-        return LoginVMFactory(useCase)
+    fun provideLoginVMFactory(useCase: LoginUseCase, mapper: LoginEntityMapper) : LoginVMFactory {
+        return LoginVMFactory(useCase,mapper)
     }
 }

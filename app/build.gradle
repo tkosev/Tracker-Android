@@ -74,6 +74,9 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$life_versions"
     annotationProcessor "android.arch.lifecycle:compiler:$life_versions"
 
+    //YoYo animation
+    implementation 'com.daimajia.easing:library:2.0@aar'
+    implementation 'com.daimajia.androidanimations:library:2.3@aar'
 
     // Dagger 2
     implementation "com.google.dagger:dagger:$dagger2_version"

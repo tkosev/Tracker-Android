@@ -20,6 +20,4 @@ class RegisterModule {
     fun provideRegisterVMFactory(registerUseCase: RegisterUseCase) : RegisterVMFactory {
         return RegisterVMFactory(registerUseCase)
     }
-
-
 }

@@ -40,6 +40,4 @@ class WelcomeActivity : BaseActivity() {
     }
 
     private fun loadWelcomeFragment() = this.replaceFragment(R.id.container, WelcomeFragment.newInstance(), WelcomeFragment.TAG)
-
-
 }

@@ -22,6 +22,8 @@
 
 
     <string name="register_register_btn_text">Register</string>
+    <string name="register_first_name_hint">First name</string>
+    <string name="register_last_name_hint">Last name</string>
 
 </resources>
 

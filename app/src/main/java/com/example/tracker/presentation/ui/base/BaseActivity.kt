@@ -9,7 +9,7 @@ import com.example.tracker.presentation.ui.login.LoginVMFactory
 import com.example.tracker.presentation.ui.login.LoginViewModel
 import javax.inject.Inject
 
-abstract class BaseActivity<T : ViewModel> : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -20,7 +20,6 @@ import javax.inject.Inject
 
 class LoginFragment : BaseFragment() {
 
-
     companion object {
         fun newInstance() = LoginFragment()
         var TAG: String = LoginFragment.javaClass.name
@@ -54,15 +53,12 @@ class LoginFragment : BaseFragment() {
         this.viewModel = ViewModelProviders.of(this, factory).get(LoginViewModel::class.java)
     }
 
-
     private fun observeViewModelState(){
         this.viewModel.loginSuccessLiveData.observe(this, Observer {
             if (it != null) handleLoginSuccess()
         })
     }
 
-    private fun handleLoginSuccess() {
-        this.startActivity(Intent(activity, HomeActivity::class.java))
-    }
+    private fun handleLoginSuccess() = this.startActivity(Intent(activity, HomeActivity::class.java))
 
 }

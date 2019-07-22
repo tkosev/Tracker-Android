@@ -8,5 +8,5 @@ interface FireBaseAuthRepo {
 
     fun loginEmailPassword(email:String, password :String) : Maybe<AuthResult>
 
-    fun signUp(email: String, password: String) : Observable<Boolean>
+    fun signUp(email: String, password: String) : Maybe<AuthResult>
 }

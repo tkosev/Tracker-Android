@@ -9,13 +9,15 @@ import io.reactivex.Observable
 
 class FireBaseAuthRepoImpl : FireBaseAuthRepo {
 
-
-    override fun signUp(email: String, password: String): Observable<Boolean> {
+    /*** Method to sign-up with FireBase SDK */
+    override fun signUp(email: String, password: String): Maybe<AuthResult>{
         return RxFirebaseAuth.createUserWithEmailAndPassword(FirebaseAuth.getInstance(),email,password)
-            .toObservable().map { true }
     }
 
+    /*** Method to sign-in with FireBase SDK */
     override fun loginEmailPassword(email: String, password: String): Maybe<AuthResult> {
         return RxFirebaseAuth.signInWithEmailAndPassword(FirebaseAuth.getInstance(), email,password)
     }
+
+
 }

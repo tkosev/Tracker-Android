@@ -20,4 +20,8 @@
     </string>
     <string name="login_error_password_invalid">The password is invalid or the user does not have a password.</string>
 
+
+    <string name="register_register_btn_text">Register</string>
+
 </resources>
+

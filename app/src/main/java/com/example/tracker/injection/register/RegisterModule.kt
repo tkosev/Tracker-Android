@@ -1,5 +1,6 @@
 package com.example.tracker.injection.register
 
+import com.example.tracker.domain.repository.FireBaseAuthRepo
 import com.example.tracker.domain.usecases.RegisterUseCase
 import com.example.tracker.presentation.transformer.AsyncTransformer
 import com.example.tracker.presentation.ui.register.RegisterVMFactory
@@ -11,8 +12,8 @@ class RegisterModule {
 
     @RegisterScope
     @Provides
-    fun provideRegisterUseCase(): RegisterUseCase {
-        return RegisterUseCase(AsyncTransformer())
+    fun provideRegisterUseCase(authenticationRepository: FireBaseAuthRepo): RegisterUseCase {
+        return RegisterUseCase(AsyncTransformer(),authenticationRepository)
     }
     @RegisterScope
     @Provides

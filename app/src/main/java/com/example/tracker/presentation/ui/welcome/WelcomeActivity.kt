@@ -3,13 +3,13 @@ package com.example.tracker.presentation.ui.welcome
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.example.tracker.R
 import com.example.tracker.common.replaceFragment
+import com.example.tracker.presentation.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.toolbar.*
 
-class WelcomeActivity : AppCompatActivity() {
+class WelcomeActivity : BaseActivity() {
 
     lateinit var backStackListener: FragmentManager.OnBackStackChangedListener
 

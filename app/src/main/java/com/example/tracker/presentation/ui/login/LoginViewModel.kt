@@ -6,7 +6,7 @@ import com.example.tracker.base.BaseViewModel
 import com.example.tracker.domain.Mapper
 import com.example.tracker.domain.usecases.LoginUseCase
 
-class LoginViewModel(private val loginUseCase: LoginUseCase, private val mapper: Mapper<String,FireBaseLoginErrors>) : BaseViewModel() {
+class LoginViewModel(private val loginUseCase: LoginUseCase, private val mapper: Mapper<String,LoginErrors>) : BaseViewModel() {
 
     /** User Email*/
     var emailAddress = MutableLiveData<String>()
@@ -15,7 +15,7 @@ class LoginViewModel(private val loginUseCase: LoginUseCase, private val mapper:
     var password = MutableLiveData<String>()
 
     var errorMessage = MutableLiveData<String>()
-    var loginErrorMessage = MutableLiveData<FireBaseLoginErrors>()
+    var loginErrorMessage = MutableLiveData<LoginErrors>()
 
     /** Success user login indicator*/
     val loginSuccessLiveData: MutableLiveData<Boolean> = MutableLiveData()

@@ -63,15 +63,15 @@ class LoginFragment : BaseFragment() {
 
     private fun handleLoginSuccess() = this.startActivity(Intent(activity, HomeActivity::class.java))
 
-    private fun handleLoginError(fireBaseError: FireBaseLoginErrors) {
+    private fun handleLoginError(fireBaseError: LoginErrors) {
         when (fireBaseError) {
-            FireBaseLoginErrors.INVALID_CREDENTIALS -> {
+            LoginErrors.INVALID_CREDENTIALS -> {
                 YoYo.with(Techniques.Shake).playOn(emailInputView)
                 YoYo.with(Techniques.Shake).playOn(passwordInputView)
             }
-            FireBaseLoginErrors.INVALID_PASSWORD -> YoYo.with(Techniques.Shake).playOn(passwordInputView)
-            FireBaseLoginErrors.INVALID_EMAIL -> YoYo.with(Techniques.Shake).playOn(emailInputView)
-            FireBaseLoginErrors.OTHER ->{}
+            LoginErrors.INVALID_PASSWORD -> YoYo.with(Techniques.Shake).playOn(passwordInputView)
+            LoginErrors.INVALID_EMAIL -> YoYo.with(Techniques.Shake).playOn(emailInputView)
+            LoginErrors.OTHER ->{}
         }
     }
 }

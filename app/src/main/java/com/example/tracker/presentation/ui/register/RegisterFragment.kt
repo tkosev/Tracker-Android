@@ -23,7 +23,6 @@ class RegisterFragment : Fragment() {
 
     private var binding: RegisterFragmentBinding? = null
 
-
     @Inject
     lateinit var factory : RegisterVMFactory
 

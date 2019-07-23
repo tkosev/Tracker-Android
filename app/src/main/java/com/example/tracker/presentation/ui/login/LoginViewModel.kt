@@ -8,28 +8,26 @@ import com.example.tracker.domain.usecases.LoginUseCase
 
 class LoginViewModel(private val loginUseCase: LoginUseCase, private val mapper: Mapper<String,LoginErrors>) : BaseViewModel() {
 
-    /** User Email*/
-    var emailAddress = MutableLiveData<String>()
+    var login : LoginParams = LoginParams()
 
-    /** User Password*/
-    var password = MutableLiveData<String>()
-
-    var errorMessage = MutableLiveData<String>()
-    var loginErrorMessage = MutableLiveData<LoginErrors>()
+    var loginErrorMessage :MutableLiveData<LoginErrors> = MutableLiveData()
 
     /** Success user login indicator*/
     val loginSuccessLiveData: MutableLiveData<Boolean> = MutableLiveData()
 
     /** Method called when user clicks on login button */
     fun onLoginButtonClick(view: View) {
-        addDisposable(loginUseCase.login(emailAddress.value!!, password.value!!)
-            .doOnError {
-                loginErrorMessage.value = mapper.mapFrom(it.localizedMessage!!)
-            }.subscribe({
-                loginSuccessLiveData.value = true
-            }, { error ->
-                errorMessage.value = error.localizedMessage
-            })
-        )
+       if(login.isValid()) {
+            addDisposable(loginUseCase.login(login.userEmail!!, login.userPassWord!!)
+                .doOnError {
+                    loginErrorMessage.value = mapper.mapFrom(it.localizedMessage!!)
+                }.subscribe({
+                    loginSuccessLiveData.value = true
+                }, { error ->
+                    login.errorMessage=error.localizedMessage
+                })
+            )
+        }
+
     }
 }

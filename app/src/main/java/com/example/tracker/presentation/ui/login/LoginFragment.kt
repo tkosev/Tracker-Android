@@ -25,6 +25,7 @@ class LoginFragment : BaseFragment() {
         var TAG: String = LoginFragment.javaClass.name
     }
 
+
     @Inject
     lateinit var factory: LoginVMFactory
 

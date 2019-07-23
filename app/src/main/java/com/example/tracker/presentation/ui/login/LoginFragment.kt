@@ -25,7 +25,6 @@ class LoginFragment : BaseFragment() {
         var TAG: String = LoginFragment.javaClass.name
     }
 
-
     @Inject
     lateinit var factory: LoginVMFactory
 
@@ -53,11 +52,10 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun observeViewModelState() {
-        this.viewModel.loginSuccessLiveData.observe(this, Observer {
+        this.viewModel.login.loginSuccessLiveData.observe(this, Observer {
             if (it != null) handleLoginSuccess()
         })
-
-        this.viewModel.loginErrorMessage.observe(this, Observer {
+        this.viewModel.login.loginErrorMessage.observe(this, Observer {
             if (it != null) handleLoginError(it)
         })
     }

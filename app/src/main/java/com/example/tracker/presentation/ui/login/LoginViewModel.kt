@@ -25,6 +25,8 @@ class LoginViewModel(private val loginUseCase: LoginUseCase, private val mapper:
         }
         else{
            //Email not valid or password length < 6
+           loginBindings.loginSuccessLiveData.value = true
+
        }
     }
 }

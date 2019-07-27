@@ -20,5 +20,4 @@ class WelcomeActivity : BaseActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean = findNavController(R.id.nav_host_fragment).navigateUp()
-
 }

@@ -87,7 +87,10 @@ class LoginFragment : BaseFragment() {
         })
     }
 
-    private fun handleLoginSuccess() = this.startActivity(Intent(activity, HomeActivity::class.java))
+    private fun handleLoginSuccess() {
+      var actionHome =  LoginFragmentDirections.actionHome()
+        Navigation.findNavController(this.view!!).navigate(actionHome)
+    }
 
     private fun handleLoginError(fireBaseError: LoginErrors) {
         when (fireBaseError) {

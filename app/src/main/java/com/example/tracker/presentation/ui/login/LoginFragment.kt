@@ -2,16 +2,22 @@ package com.example.tracker.presentation.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Debug
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
+import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
+import com.example.tracker.App
 import com.example.tracker.databinding.FragmentLoginBinding
-import com.example.tracker.presentation.ui.App
 import com.example.tracker.presentation.ui.base.BaseFragment
 import com.example.tracker.presentation.ui.home.HomeActivity
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -47,15 +53,36 @@ class LoginFragment : BaseFragment() {
         return binding?.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initListeners()
+    }
+
+    private fun initListeners() {
+        txtRegisterNow.setOnClickListener {
+            val registerAction = LoginFragmentDirections.actionRegister()
+            Navigation.findNavController(it).navigate(registerAction)
+        }
+        txtForgotPassword.setOnClickListener {
+            val forgotPasswordAction = LoginFragmentDirections.actionForgotPassword()
+            Navigation.findNavController(it).navigate(forgotPasswordAction)
+
+        }
+        // This callback will only be called when MyFragment is at least Started.
+        requireActivity().onBackPressedDispatcher.addCallback(this@LoginFragment){
+           Log.e("dasdas","TOdodo")
+        }
+    }
+
     private fun initViewModel() {
         this.viewModel = ViewModelProviders.of(this, factory).get(LoginViewModel::class.java)
     }
 
     private fun observeViewModelState() {
-        this.viewModel.login.loginSuccessLiveData.observe(this, Observer {
+        this.viewModel.loginBindings.loginSuccessLiveData.observe(this, Observer {
             if (it != null) handleLoginSuccess()
         })
-        this.viewModel.login.loginErrorMessage.observe(this, Observer {
+        this.viewModel.loginBindings.loginErrorMessage.observe(this, Observer {
             if (it != null) handleLoginError(it)
         })
     }
@@ -70,7 +97,8 @@ class LoginFragment : BaseFragment() {
             }
             LoginErrors.INVALID_PASSWORD -> YoYo.with(Techniques.Shake).playOn(passwordInputView)
             LoginErrors.INVALID_EMAIL -> YoYo.with(Techniques.Shake).playOn(emailInputView)
-            LoginErrors.OTHER ->{}
+            LoginErrors.OTHER -> {
+            }
         }
     }
 }

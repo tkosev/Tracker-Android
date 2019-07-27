@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion 29
@@ -14,13 +14,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
 
     dataBinding {
         enabled = true
@@ -41,6 +44,8 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    //Multi Dex
+    implementation 'com.android.support:multidex:1.0.3'
 
     // Support Design
     implementation "com.android.support:design:$android_support_version"
@@ -73,6 +78,13 @@ dependencies {
     // Lifecycle components
     implementation "android.arch.lifecycle:extensions:$life_versions"
     annotationProcessor "android.arch.lifecycle:compiler:$life_versions"
+
+
+    //Nav graph
+
+    // Kotlin
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_graph_ktx_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_graph_ktx_version"
 
     //YoYo animation
     implementation 'com.daimajia.easing:library:2.0@aar'

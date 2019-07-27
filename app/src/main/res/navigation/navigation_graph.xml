@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/navigation_graph"
+            app:startDestination="@id/destinationWelcome">
+
+    <fragment android:id="@+id/destinationLogin"
+              tools:layout="@layout/fragment_login"
+
+              android:name="com.example.tracker.presentation.ui.login.LoginFragment"
+              android:label="LoginFragment">
+        <action android:id="@+id/action_register"
+                app:destination="@id/destinationRegister"/>
+        <action android:id="@+id/actionForgotPassword"
+                app:destination="@id/forgotPasswordFragment"/>
+    </fragment>
+    <fragment android:id="@+id/destinationWelcome"
+              tools:layout="@layout/welcome_fragment"
+
+              android:name="com.example.tracker.presentation.ui.welcome.WelcomeFragment"
+              android:label="WelcomeFragment">
+        <action android:id="@+id/login_action"
+                app:destination="@id/destinationLogin"/>
+        <action android:id="@+id/register_action"
+                app:destination="@id/destinationRegister"/>
+    </fragment>
+    <fragment android:id="@+id/destinationRegister"
+              tools:layout="@layout/register_fragment"
+              android:name="com.example.tracker.presentation.ui.register.RegisterFragment"
+              android:label="RegisterFragment"/>
+    <fragment android:id="@+id/forgotPasswordFragment"
+              tools:layout="@layout/forgot_password_fragment"
+              android:name="com.example.tracker.presentation.ui.password.ForgotPasswordFragment"
+              android:label="ForgotPasswordFragment"/>
+</navigation>

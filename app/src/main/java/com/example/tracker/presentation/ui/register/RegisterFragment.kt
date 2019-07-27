@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.tracker.R
 import com.example.tracker.databinding.RegisterFragmentBinding
-import com.example.tracker.presentation.ui.App
+import com.example.tracker.App
 import javax.inject.Inject
 
 class RegisterFragment : Fragment() {

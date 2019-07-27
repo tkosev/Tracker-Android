@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
+import com.example.tracker.App
 import com.example.tracker.R
 import com.example.tracker.databinding.WelcomeFragmentBinding
-import com.example.tracker.presentation.ui.App
-import com.example.tracker.presentation.ui.login.LoginFragment
-import com.example.tracker.presentation.ui.register.RegisterFragment
 import kotlinx.android.synthetic.main.welcome_fragment.*
 import javax.inject.Inject
 
@@ -19,7 +18,6 @@ class WelcomeFragment : Fragment() {
 
     companion object {
         fun newInstance() = WelcomeFragment()
-        var TAG: String = WelcomeFragment.javaClass.name
     }
 
     @Inject
@@ -42,8 +40,8 @@ class WelcomeFragment : Fragment() {
         this.viewModel = ViewModelProviders.of(this, factory).get(WelcomeViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
-        this.binding = DataBindingUtil.inflate(inflater, R.layout.welcome_fragment,container,false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        this.binding = DataBindingUtil.inflate(inflater, R.layout.welcome_fragment, container, false)
         this.binding?.lifecycleOwner = this
         this.binding?.welcomeViewModel = viewModel
         return binding?.root
@@ -54,19 +52,15 @@ class WelcomeFragment : Fragment() {
         initButtonListeners()
     }
 
-    private fun initButtonListeners(){
+    private fun initButtonListeners() {
         btnLoginNow.setOnClickListener {
-            fragmentManager?.beginTransaction()
-                ?.add(R.id.container,LoginFragment.newInstance(),LoginFragment.TAG)
-                ?.addToBackStack(null)
-                ?.commit()
+            val nextAction = WelcomeFragmentDirections.loginAction()
+            Navigation.findNavController(it).navigate(nextAction)
         }
 
         btnRegisterEmail.setOnClickListener {
-            fragmentManager?.beginTransaction()
-                ?.add(R.id.container,RegisterFragment.newInstance(),RegisterFragment.TAG)
-                ?.addToBackStack(null)
-                ?.commit()
+            val nextAction = WelcomeFragmentDirections.registerAction()
+            Navigation.findNavController(it).navigate(nextAction)
         }
     }
 }

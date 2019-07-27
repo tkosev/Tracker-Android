@@ -6,10 +6,10 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.MutableLiveData
 import com.example.tracker.presentation.ui.login.LoginErrors
 
-class LoginParams : BaseObservable() {
+class LoginViewBindings : BaseObservable() {
 
     /** Error user login indicator*/
-    var loginErrorMessage : MutableLiveData<LoginErrors> = MutableLiveData()
+    var loginErrorMessage: MutableLiveData<LoginErrors> = MutableLiveData()
 
     /** Success user login indicator*/
     val loginSuccessLiveData: MutableLiveData<Boolean> = MutableLiveData()
@@ -35,7 +35,7 @@ class LoginParams : BaseObservable() {
             notifyPropertyChanged(BR.errorMessage)
         }
 
-    fun isValid() : Boolean =
+    /**Function to check if the email and password are valid*/
+    fun isValid(): Boolean =
         android.util.Patterns.EMAIL_ADDRESS.matcher(userEmail!!).matches() && userPassWord!!.length > 6
-
 }

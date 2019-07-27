@@ -6,6 +6,5 @@ import com.example.tracker.domain.usecases.RegisterUseCase
 
 class RegisterVMFactory(private val registerUseCase: RegisterUseCase) : ViewModelProvider.Factory {
 
-
     override fun <T : ViewModel?> create(modelClass: Class<T>): T = RegisterViewModel(registerUseCase) as T
 }

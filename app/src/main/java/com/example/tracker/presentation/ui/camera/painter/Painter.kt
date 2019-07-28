@@ -1,4 +1,4 @@
-package com.example.tracker.presentation.ui.custom
+package com.example.tracker.presentation.ui.camera.painter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import com.example.tracker.presentation.ui.custom.painter.Line
+import com.example.tracker.presentation.ui.camera.painter.Line
 
 
 class Painter : View {

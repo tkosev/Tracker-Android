@@ -79,10 +79,12 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$life_versions"
     annotationProcessor "android.arch.lifecycle:compiler:$life_versions"
 
+    //Camera
+    // implementation 'io.fotoapparat.fotoapparat:library:2.2.0'
+    // Camera
+    implementation 'com.otaliastudios:cameraview:1.6.0'
 
     //Nav graph
-
-    // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_graph_ktx_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_graph_ktx_version"
 

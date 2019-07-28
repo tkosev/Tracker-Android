@@ -20,10 +20,11 @@ class TakePictureState(cameraManager: CameraManager) : PictureState(cameraManage
             override fun onPictureTaken(jpeg: ByteArray?) {
                 super.onPictureTaken(jpeg)
                 // Picture is taken go to the conversion state:
-                cameraManager.setState(PictureConversionState(cameraManager))
+                cameraManager.setState(PictureConversionState(cameraManager,jpeg))
             }
         })
 
+        //Capture button
         (cameraManager.context() as Activity).findViewById<FloatingActionButton>(R.id.activity_capture_image_take_picture)
             .setOnClickListener {
                 cameraManager.getCameraView().captureSnapshot()

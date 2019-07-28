@@ -16,10 +16,6 @@ import javax.inject.Inject
 
 class WelcomeFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = WelcomeFragment()
-    }
-
     @Inject
     lateinit var factory: WelcomeVMFactory
 

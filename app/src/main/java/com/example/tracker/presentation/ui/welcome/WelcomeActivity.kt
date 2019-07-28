@@ -1,7 +1,10 @@
 package com.example.tracker.presentation.ui.welcome
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.example.tracker.R
 import com.example.tracker.presentation.ui.base.BaseActivity
@@ -19,5 +22,7 @@ class WelcomeActivity : BaseActivity() {
         setupActionBarWithNavController(this, navController)
     }
 
+
     override fun onSupportNavigateUp(): Boolean = findNavController(R.id.nav_host_fragment).navigateUp()
+
 }

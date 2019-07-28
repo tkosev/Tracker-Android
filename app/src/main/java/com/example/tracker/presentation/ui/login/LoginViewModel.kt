@@ -10,6 +10,7 @@ class LoginViewModel(private val loginUseCase: LoginUseCase, private val mapper:
 
     var loginBindings : LoginViewBindings = LoginViewBindings()
 
+
     /** Method called when user clicks on login button */
     fun onLoginButtonClick(view: View) {
        if(loginBindings.isValid()) {
@@ -24,9 +25,7 @@ class LoginViewModel(private val loginUseCase: LoginUseCase, private val mapper:
             )
         }
         else{
-           //Email not valid or password length < 6
-           loginBindings.loginSuccessLiveData.value = true
-
+            //TODO:
        }
     }
 }

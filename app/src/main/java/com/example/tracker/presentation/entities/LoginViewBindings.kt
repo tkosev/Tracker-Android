@@ -37,5 +37,5 @@ class LoginViewBindings : BaseObservable() {
 
     /**Function to check if the email and password are valid*/
     fun isValid(): Boolean =
-        android.util.Patterns.EMAIL_ADDRESS.matcher(userEmail!!).matches() && userPassWord!!.length > 6
+        android.util.Patterns.EMAIL_ADDRESS.matcher(userEmail!!).matches() && userPassWord!!.length >= 6
 }

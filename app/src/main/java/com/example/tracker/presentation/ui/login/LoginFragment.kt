@@ -1,15 +1,9 @@
 package com.example.tracker.presentation.ui.login
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Debug
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
-import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -19,7 +13,6 @@ import com.daimajia.androidanimations.library.YoYo
 import com.example.tracker.App
 import com.example.tracker.databinding.FragmentLoginBinding
 import com.example.tracker.presentation.ui.base.BaseFragment
-import com.example.tracker.presentation.ui.home.HomeActivity
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
 
@@ -66,11 +59,6 @@ class LoginFragment : BaseFragment() {
         txtForgotPassword.setOnClickListener {
             val forgotPasswordAction = LoginFragmentDirections.actionForgotPassword()
             Navigation.findNavController(it).navigate(forgotPasswordAction)
-
-        }
-        // This callback will only be called when MyFragment is at least Started.
-        requireActivity().onBackPressedDispatcher.addCallback(this@LoginFragment){
-           Log.e("dasdas","TOdodo")
         }
     }
 
@@ -88,8 +76,9 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun handleLoginSuccess() {
-      var actionHome =  LoginFragmentDirections.actionHome()
+        val actionHome = LoginFragmentDirections.actionHome()
         Navigation.findNavController(this.view!!).navigate(actionHome)
+        activity?.finish()
     }
 
     private fun handleLoginError(fireBaseError: LoginErrors) {

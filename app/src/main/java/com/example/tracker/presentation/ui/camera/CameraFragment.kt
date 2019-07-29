@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.camera_fragment.*
 
 class CameraFragment : Fragment(), CameraManager {
 
-
     private lateinit var state: PictureState
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -38,7 +37,6 @@ class CameraFragment : Fragment(), CameraManager {
         activityCaptureImageCamera.stop()
     }
 
-
     override fun setState(state: PictureState) {
         this.state = state
         activityCaptureImageStateContent.apply {
@@ -50,7 +48,6 @@ class CameraFragment : Fragment(), CameraManager {
     }
 
     override fun context(): Context? = context
-
 
     override fun getCameraView(): CameraView = activityCaptureImageCamera
 }

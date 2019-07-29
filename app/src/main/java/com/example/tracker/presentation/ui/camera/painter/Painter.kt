@@ -7,9 +7,15 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.widget.FrameLayout
+import com.example.tracker.R
 
 
-class Painter : View {
+class Painter : EditView {
+
+
+    private var lastX: Int = 0
+    private var lastY: Int = 0
 
     var lines = ArrayList<Line>()
     var mPaint = Paint()
@@ -20,7 +26,7 @@ class Painter : View {
     private var mY: Float = 0.toFloat()
     private var mExtraCanvas: Canvas? = null
 
-    private lateinit var imageBitmap: Bitmap
+    private lateinit var displayBitmap: Bitmap
     var mPath = Path()
 
     constructor(context: Context) : this(context, null)
@@ -40,7 +46,7 @@ class Painter : View {
     }
 
     fun setBitmap(imageBitmap: Bitmap) {
-        this.imageBitmap = imageBitmap
+        this.displayBitmap = imageBitmap
     }
 
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
@@ -64,7 +70,7 @@ class Painter : View {
         // Draw the bitmap that has the saved path.
 
         canvas?.apply {
-            drawBitmap(imageBitmap, 0.0f, 0.0f, mPaint)
+            drawBitmap(displayBitmap, 0.0f, 0.0f, mPaint)
         }
 
         // Draw a frame around the picture.
@@ -72,23 +78,50 @@ class Painter : View {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        val x = event?.x
-        val y = event?.y
+    override fun onTouch(event: MotionEvent): Boolean {
+        var rtn = false
+        val action = event.action
 
-        // Invalidate() is inside the case statements because there are many
-        // other types of motion events passed into this listener,
-        // and we don't want to invalidate the view for those.
-        when (event?.action) {
-            MotionEvent.ACTION_DOWN -> touchStart(x!!, y!!)
-            MotionEvent.ACTION_MOVE -> {
-                touchMove(x!!, y!!)
-                invalidate()
+        val x: Int
+        val y: Int
+        when (action) {
+            MotionEvent.ACTION_DOWN -> {
+                x = event.x.toInt()
+                y = event.y.toInt()
+                lastX = x
+                lastY = y
+                rtn = true
             }
-            MotionEvent.ACTION_UP -> touchUp()
-        }// No need to invalidate because we are not drawing anything.
-        // do nothing
-        return true
+            MotionEvent.ACTION_MOVE -> {
+                x = event.x.toInt()
+                y = event.y.toInt()
+
+                val paint = Paint()
+                paint.color = color
+                paint.style = Paint.Style.FILL_AND_STROKE
+                paint.strokeWidth = size
+                mExtraCanvas?.drawLine(lastX.toFloat(), lastY.toFloat(), x.toFloat(), y.toFloat(), paint)
+                paint.strokeWidth = 1f
+                mExtraCanvas?.drawCircle(x.toFloat(), y.toFloat(), size / 2, paint)
+                lastX = x
+                lastY = y
+
+
+                rtn = true
+            }
+            MotionEvent.ACTION_UP -> //requestSave()
+                rtn = true
+        }
+
+        return rtn
+    }
+
+    override fun clear() {
+
+    }
+
+    override fun finish(bitmap: Bitmap) {
+
     }
 
     private fun touchStart(x: Float, y: Float) {

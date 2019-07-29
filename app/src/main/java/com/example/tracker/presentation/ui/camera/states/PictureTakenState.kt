@@ -29,7 +29,7 @@ class PictureTakenState(cameraManager: CameraManager, private val imageBitmap: B
 
             }
 
-        var viewEditPainter = (cameraManager.context() as Activity).findViewById<Painter>(R.id.view_edit_painter)
+        val viewEditPainter = (cameraManager.context() as Activity).findViewById<Painter>(R.id.view_edit_painter)
         viewEditPainter.setBitmap(imageBitmap)
 
     }

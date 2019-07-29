@@ -79,8 +79,10 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$life_versions"
     annotationProcessor "android.arch.lifecycle:compiler:$life_versions"
 
-    //Camera
-    // implementation 'io.fotoapparat.fotoapparat:library:2.2.0'
+    //GLide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
     // Camera
     implementation 'com.otaliastudios:cameraview:1.6.0'
 
